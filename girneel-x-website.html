@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GIRNEEL X — Premium Digital Agency | Website Development India</title>
+<meta name="description" content="GIRNEEL X — India's Premium Digital Agency. Custom website development starting ₹1999. HTML, React, Firebase experts. Founded by Jatin Singh Lodhi, Raebareli, UP.">
+<meta name="keywords" content="website development India, digital agency Raebareli, custom website ₹1999, React developer UP, GIRNEEL X">
+<meta property="og:title" content="GIRNEEL X — Premium Digital Agency">
+<meta property="og:description" content="Custom website development starting ₹1999. India's top digital agency for hospitals, schools, corporates.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #050507;
+    --bg2: #0a0a0f;
+    --bg3: #0f0f17;
+    --surface: #13131e;
+    --surface2: #1a1a28;
+    --border: rgba(255,255,255,0.07);
+    --accent: #6c63ff;
+    --accent2: #ff6b6b;
+    --accent3: #00d4ff;
+    --gold: #ffd700;
+    --text: #f0f0ff;
+    --text2: #9090b0;
+    --text3: #606080;
+    --glass: rgba(255,255,255,0.04);
+    --glass-border: rgba(255,255,255,0.1);
+    --glow: 0 0 40px rgba(108,99,255,0.3);
+    --r: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9998; opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; height: 72px;
+    background: rgba(5,5,7,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  nav.scrolled { height: 60px; background: rgba(5,5,7,0.97); }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+  .nav-logo img { height: 42px; width: auto; filter: drop-shadow(0 0 12px rgba(108,99,255,0.6)); }
+  .nav-logo-text {
+    font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800;
+    background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    letter-spacing: 0.05em;
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--text2); font-size: 0.9rem; text-decoration: none;
+    font-weight: 500; transition: color 0.2s; letter-spacing: 0.02em;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .nav-cta {
+    background: var(--accent); color: #fff; border: none;
+    padding: 10px 22px; border-radius: 50px; font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.3s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: #7c73ff; box-shadow: var(--glow); transform: translateY(-1px); }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--text); transition: all 0.3s; }
+
+  /* PAGE SECTIONS */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* HERO */
+  #home {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 100px 5% 60px;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 50%, rgba(108,99,255,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(0,212,255,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 30% 30% at 90% 10%, rgba(255,107,107,0.06) 0%, transparent 50%);
+  }
+
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    align-items: center; max-width: 1200px; margin: 0 auto;
+    position: relative; z-index: 1;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(108,99,255,0.12); border: 1px solid rgba(108,99,255,0.3);
+    padding: 6px 16px; border-radius: 50px; font-size: 0.8rem; color: var(--accent);
+    font-family: 'Space Mono', monospace; margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-badge span { width: 6px; height: 6px; background: #00ff88; border-radius: 50%; animation: pulse 2s infinite; }
+
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif; font-size: clamp(1.9rem, 7vw, 4rem);
+    font-weight: 800; line-height: 1.15; margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s 0.1s ease both; word-break: break-word;
+  }
+  .hero-title .line2 {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent3) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    display: block;
+  }
+  .hero-title .line3 { color: var(--text2); font-size: 0.7em; display: block; font-weight: 600; }
+
+  .hero-desc {
+    font-size: 1.05rem; color: var(--text2); margin-bottom: 2rem; max-width: 480px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.8s 0.3s ease both; }
+  .btn-primary {
+    background: var(--accent); color: #fff; padding: 14px 32px;
+    border-radius: 50px; font-weight: 600; text-decoration: none;
+    font-size: 1rem; transition: all 0.3s; cursor: pointer; border: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary:hover { background: #7c73ff; box-shadow: var(--glow); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--text); padding: 14px 32px;
+    border-radius: 50px; font-weight: 600; text-decoration: none;
+    font-size: 1rem; transition: all 0.3s; cursor: pointer;
+    border: 1px solid var(--border); font-family: 'DM Sans', sans-serif;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    display: flex; gap: 2rem; margin-top: 3rem; animation: fadeUp 0.8s 0.4s ease both;
+  }
+  .stat { text-align: left; }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text); }
+  .stat-label { font-size: 0.8rem; color: var(--text3); }
+
+  .hero-visual { position: relative; animation: fadeIn 1s 0.5s ease both; }
+  .hero-card-stack { position: relative; }
+
+  .floating-card {
+    background: var(--glass); backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border); border-radius: var(--r);
+    padding: 20px; position: absolute;
+  }
+  .floating-card.fc1 {
+    top: 0; right: 0; width: 200px;
+    animation: float1 4s ease-in-out infinite;
+  }
+  .floating-card.fc2 {
+    bottom: 60px; left: -20px; width: 180px;
+    animation: float2 4s 1s ease-in-out infinite;
+  }
+  @keyframes float1 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+  @keyframes float2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(10px)} }
+
+  .fc-label { font-size: 0.7rem; color: var(--text3); margin-bottom: 6px; font-family: 'Space Mono', monospace; }
+  .fc-value { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+  .fc-sub { font-size: 0.75rem; color: var(--text2); }
+
+  .hero-img-wrap {
+    width: 100%; border-radius: 20px; overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5), var(--glow);
+    background: var(--surface);
+    padding: 30px; text-align: center;
+  }
+  .hero-code-preview {
+    font-family: 'Space Mono', monospace; font-size: 0.75rem;
+    color: var(--text2); text-align: left; line-height: 1.8;
+  }
+  .code-kw { color: var(--accent); }
+  .code-str { color: var(--accent3); }
+  .code-fn { color: #ffd700; }
+
+  /* TRUST BADGES */
+  .trust-bar {
+    padding: 20px 5%;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 2rem;
+    overflow: hidden; background: var(--bg2);
+  }
+  .trust-label { font-size: 0.75rem; color: var(--text3); white-space: nowrap; font-family: 'Space Mono', monospace; }
+  .trust-marquee { display: flex; gap: 3rem; animation: marquee 20s linear infinite; white-space: nowrap; }
+  @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .trust-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: var(--text2); }
+  .trust-icon { font-size: 1.1rem; }
+
+  /* SECTIONS */
+  section { padding: 80px 5%; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    font-family: 'Space Mono', monospace; font-size: 0.75rem;
+    color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800; line-height: 1.15; margin-bottom: 1rem;
+  }
+  .section-sub { font-size: 1.05rem; color: var(--text2); max-width: 560px; margin-bottom: 3rem; }
+
+  /* SERVICES GRID */
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;
+  }
+  .service-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r); padding: 28px; transition: all 0.4s;
+    position: relative; overflow: hidden; cursor: pointer;
+  }
+  .service-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(108,99,255,0.05) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .service-card:hover { border-color: rgba(108,99,255,0.4); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+  .service-card:hover::before { opacity: 1; }
+
+  .sc-icon {
+    width: 50px; height: 50px; border-radius: 12px;
+    background: rgba(108,99,255,0.15); display: flex; align-items: center;
+    justify-content: center; font-size: 1.5rem; margin-bottom: 1.2rem;
+    transition: all 0.3s;
+  }
+  .service-card:hover .sc-icon { background: rgba(108,99,255,0.3); transform: scale(1.1); }
+  .sc-title { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+  .sc-desc { font-size: 0.88rem; color: var(--text2); line-height: 1.6; }
+  .sc-tag {
+    display: inline-block; margin-top: 12px; font-size: 0.75rem;
+    padding: 3px 10px; border-radius: 50px;
+    background: rgba(108,99,255,0.12); color: var(--accent);
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* OFFER BANNER */
+  .offer-banner {
+    background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
+    border: 1px solid rgba(108,99,255,0.3); border-radius: 20px;
+    padding: 40px; text-align: center; margin: 3rem 0;
+    position: relative; overflow: hidden;
+  }
+  .offer-banner::after {
+    content: ''; position: absolute; top: -50%; right: -20%;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .offer-price {
+    font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 800; color: var(--gold);
+    text-shadow: 0 0 30px rgba(255,215,0,0.4);
+    white-space: nowrap; line-height: 1.2;
+  }
+  .offer-label { font-size: 0.85rem; color: var(--text2); margin-top: 4px; }
+
+  /* TECH STACK */
+  .tech-grid { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 2rem; }
+  .tech-pill {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 10px 20px; border-radius: 50px; font-size: 0.85rem;
+    color: var(--text2); display: flex; align-items: center; gap: 8px;
+    transition: all 0.3s; cursor: default;
+  }
+  .tech-pill:hover { border-color: var(--accent); color: var(--text); transform: translateY(-2px); }
+  .tech-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* PRICING */
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+  .pricing-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: 32px; position: relative; transition: all 0.3s;
+  }
+  .pricing-card.featured {
+    border-color: var(--accent); background: linear-gradient(135deg, var(--surface) 0%, rgba(108,99,255,0.1) 100%);
+    transform: scale(1.03);
+  }
+  .pricing-card.featured::before {
+    content: 'Most Popular'; position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--accent); color: #fff; font-size: 0.75rem; font-weight: 600;
+    padding: 4px 16px; border-radius: 50px;
+  }
+  .pricing-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+  .pricing-card.featured:hover { transform: scale(1.03) translateY(-4px); }
+  .pc-name { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text2); margin-bottom: 8px; }
+  .pc-price { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; margin-bottom: 4px; }
+  .pc-price span { font-size: 1rem; font-weight: 400; color: var(--text3); }
+  .pc-desc { font-size: 0.85rem; color: var(--text2); margin-bottom: 1.5rem; }
+  .pc-features { list-style: none; margin-bottom: 2rem; }
+  .pc-features li { font-size: 0.88rem; color: var(--text2); padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; }
+  .pc-features li::before { content: '✓'; color: var(--accent); font-weight: 700; }
+
+  /* PORTFOLIO */
+  .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+  .portfolio-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r); overflow: hidden; transition: all 0.3s; cursor: pointer;
+  }
+  .portfolio-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+  .port-thumb {
+    height: 200px; background: var(--surface2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; position: relative; overflow: hidden;
+  }
+  .port-thumb::after {
+    content: 'View Project'; position: absolute; inset: 0;
+    background: rgba(108,99,255,0.85); display: flex; align-items: center;
+    justify-content: center; font-size: 0.9rem; font-weight: 600;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .portfolio-card:hover .port-thumb::after { opacity: 1; }
+  .port-info { padding: 20px; }
+  .port-cat { font-size: 0.75rem; color: var(--accent); font-family: 'Space Mono', monospace; margin-bottom: 6px; }
+  .port-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: center; }
+  .founder-img-wrap {
+    position: relative;
+  }
+  .founder-img {
+    width: 100%; border-radius: 20px; border: 2px solid var(--border);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    display: block; object-fit: cover; height: 400px;
+  }
+  .founder-badge-wrap {
+    position: absolute; bottom: -20px; right: -20px;
+    background: var(--accent); color: #fff; padding: 16px 20px;
+    border-radius: 16px; text-align: center;
+    box-shadow: var(--glow);
+  }
+  .fb-num { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; }
+  .fb-label { font-size: 0.7rem; opacity: 0.85; }
+
+  .vision-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+  .vision-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r); padding: 20px;
+  }
+  .vc-icon { font-size: 1.5rem; margin-bottom: 10px; }
+  .vc-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+  .vc-text { font-size: 0.85rem; color: var(--text2); }
+
+  /* CONTACT */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 3rem; }
+  .contact-info h3 { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 1.5rem; }
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.5rem; }
+  .ci-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: rgba(108,99,255,0.15); display: flex; align-items: center;
+    justify-content: center; font-size: 1.2rem; flex-shrink: 0;
+  }
+  .ci-label { font-size: 0.78rem; color: var(--text3); margin-bottom: 2px; font-family: 'Space Mono', monospace; }
+  .ci-value { font-size: 0.95rem; color: var(--text); }
+
+  /* FORM STYLES */
+  .form-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: 32px;
+  }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-label { display: block; font-size: 0.82rem; color: var(--text2); margin-bottom: 6px; font-weight: 500; }
+  .form-input, .form-select, .form-textarea {
+    width: 100%; background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 16px; color: var(--text);
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+    transition: border-color 0.2s; outline: none;
+  }
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--accent); box-shadow: 0 0 0 3px rgba(108,99,255,0.15);
+  }
+  .form-select { cursor: pointer; }
+  .form-textarea { resize: vertical; min-height: 100px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* APPLICATION FORM */
+  .app-form-wrap { max-width: 800px; margin: 0 auto; }
+  .step-indicator {
+    display: flex; justify-content: center; gap: 0; margin-bottom: 2.5rem;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 50px;
+    padding: 6px; overflow: hidden;
+  }
+  .step-dot {
+    flex: 1; text-align: center; padding: 10px 16px; border-radius: 50px;
+    font-size: 0.8rem; color: var(--text3); cursor: pointer; transition: all 0.3s;
+    font-family: 'Space Mono', monospace; display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .step-dot.active { background: var(--accent); color: #fff; }
+  .step-dot.done { color: var(--accent); }
+
+  .step-panel { display: none; }
+  .step-panel.active { display: block; animation: fadeUp 0.4s ease; }
+
+  .step-title {
+    font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .step-sub { font-size: 0.9rem; color: var(--text2); margin-bottom: 1.5rem; }
+
+  .cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+  .cat-card {
+    background: var(--bg3); border: 2px solid var(--border);
+    border-radius: var(--r); padding: 16px; text-align: center; cursor: pointer;
+    transition: all 0.3s;
+  }
+  .cat-card:hover, .cat-card.selected {
+    border-color: var(--accent); background: rgba(108,99,255,0.08);
+  }
+  .cat-card.selected { border-color: var(--accent); }
+  .cat-card-icon { font-size: 1.8rem; margin-bottom: 8px; }
+  .cat-card-label { font-size: 0.82rem; font-weight: 500; }
+
+  .checkbox-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; margin-bottom: 1.5rem; }
+  .checkbox-item {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 10px; padding: 12px 14px; cursor: pointer; transition: all 0.3s;
+  }
+  .checkbox-item:hover { border-color: var(--accent); }
+  .checkbox-item input[type="checkbox"] { accent-color: var(--accent); width: 16px; height: 16px; cursor: pointer; }
+  .checkbox-item label { font-size: 0.88rem; cursor: pointer; }
+
+  .disclaimer-box {
+    background: rgba(255,215,0,0.06); border: 1px solid rgba(255,215,0,0.2);
+    border-radius: 12px; padding: 16px 20px; margin-bottom: 1.5rem;
+    font-size: 0.88rem; color: #ffd700; line-height: 1.6;
+  }
+  .disclaimer-box .d-icon { font-size: 1.1rem; margin-right: 6px; }
+
+  .form-nav { display: flex; gap: 1rem; justify-content: flex-end; margin-top: 1.5rem; }
+  .btn-step {
+    padding: 12px 28px; border-radius: 50px; font-weight: 600; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; border: none; transition: all 0.3s;
+  }
+  .btn-step-next { background: var(--accent); color: #fff; }
+  .btn-step-next:hover { background: #7c73ff; }
+  .btn-step-prev { background: var(--surface2); color: var(--text2); border: 1px solid var(--border); }
+  .btn-step-prev:hover { color: var(--text); }
+  .btn-step-submit {
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: #fff; width: 100%; font-size: 1rem; padding: 14px;
+  }
+  .btn-step-submit:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  /* DOMAIN SECTION */
+  .domain-bar {
+    display: flex; gap: 1rem; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 16px; padding: 6px;
+    max-width: 600px; margin: 0 auto;
+  }
+  .domain-input-wrap { flex: 1; display: flex; align-items: center; gap: 8px; padding: 0 12px; }
+  .domain-at { font-family: 'Space Mono', monospace; color: var(--text3); font-size: 1rem; }
+  .domain-input {
+    flex: 1; background: none; border: none; outline: none;
+    color: var(--text); font-size: 1rem; font-family: 'DM Sans', sans-serif;
+  }
+  .domain-select {
+    background: var(--bg3); border: 1px solid var(--border); color: var(--text);
+    padding: 8px 12px; border-radius: 10px; font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; cursor: pointer; outline: none;
+  }
+
+  /* BLOG */
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+  .blog-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r); overflow: hidden; transition: all 0.3s; cursor: pointer;
+  }
+  .blog-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+  .blog-thumb { height: 160px; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; }
+  .blog-content { padding: 20px; }
+  .blog-tag { font-size: 0.72rem; color: var(--accent); font-family: 'Space Mono', monospace; margin-bottom: 8px; }
+  .blog-title { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 8px; line-height: 1.4; }
+  .blog-excerpt { font-size: 0.85rem; color: var(--text2); }
+  .blog-meta { display: flex; gap: 1rem; margin-top: 12px; font-size: 0.78rem; color: var(--text3); }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg2); border-top: 1px solid var(--border);
+    padding: 60px 5% 30px;
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; max-width: 1200px; margin: 0 auto; padding-bottom: 3rem; border-bottom: 1px solid var(--border); }
+  .footer-brand img { height: 50px; margin-bottom: 1rem; }
+  .footer-brand p { font-size: 0.88rem; color: var(--text2); line-height: 1.7; max-width: 280px; }
+  .footer-col h4 { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 1rem; }
+  .footer-col a { display: block; font-size: 0.88rem; color: var(--text2); text-decoration: none; margin-bottom: 8px; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--accent); }
+  .footer-bottom { max-width: 1200px; margin: 24px auto 0; display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: var(--text3); flex-wrap: wrap; gap: 1rem; }
+
+  /* WHATSAPP FLOAT */
+  .wa-float {
+    position: fixed; bottom: 28px; right: 28px; z-index: 999;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+    cursor: pointer; transition: all 0.3s; text-decoration: none;
+    animation: waFloat 3s ease-in-out infinite;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 12px 32px rgba(37,211,102,0.5); }
+  @keyframes waFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+  .wa-float-label {
+    position: absolute; right: 66px; background: var(--surface);
+    border: 1px solid var(--border); padding: 6px 14px; border-radius: 50px;
+    font-size: 0.82rem; white-space: nowrap; color: var(--text);
+    opacity: 0; transition: opacity 0.3s; pointer-events: none;
+  }
+  .wa-float:hover .wa-float-label { opacity: 1; }
+
+  /* MOBILE NAV */
+  .mobile-nav {
+    display: none; position: fixed; inset: 0; z-index: 999;
+    background: var(--bg); padding: 100px 5% 5%;
+    flex-direction: column; gap: 1rem;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    color: var(--text); font-family: 'Syne', sans-serif; font-size: 1.3rem;
+    font-weight: 700; text-decoration: none; padding: 12px 0;
+    border-bottom: 1px solid var(--border); transition: color 0.2s;
+  }
+  .mobile-nav a:hover { color: var(--accent); }
+
+  /* PRIVACY */
+  .privacy-content h2 { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 700; margin: 2rem 0 1rem; color: var(--accent); }
+  .privacy-content p { color: var(--text2); margin-bottom: 1rem; line-height: 1.8; }
+  .privacy-content ul { color: var(--text2); padding-left: 1.5rem; margin-bottom: 1rem; }
+  .privacy-content li { margin-bottom: 6px; line-height: 1.8; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero-visual { display: none; }
+    .hero-actions { justify-content: center; flex-direction: column; align-items: center; }
+    .hero-actions a { width: 100%; max-width: 320px; text-align: center; }
+    .hero-stats { justify-content: center; }
+    .about-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .vision-grid { grid-template-columns: 1fr; }
+    #home { padding-top: 130px; min-height: auto; }
+  }
+  @media (max-width: 600px) {
+    .step-indicator { gap: 2px; }
+    .step-dot { font-size: 0.65rem; padding: 8px 8px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .cat-grid { grid-template-columns: repeat(2, 1fr); }
+    /* Offer grid stack on very small screens */
+    div[style*="grid-template-columns:1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+    }
+    .offer-banner { padding: 24px 20px; }
+    .hero-stats { gap: 1rem; }
+    .stat-num { font-size: 1.4rem; }
+  }
+
+  /* HIGHLIGHT */
+  .highlight { color: var(--accent); }
+  .highlight2 { color: var(--accent3); }
+  .highlight3 { color: var(--gold); }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--border); margin: 0; }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* SUCCESS */
+  .success-msg {
+    background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.3);
+    border-radius: 12px; padding: 20px; text-align: center;
+    font-size: 1rem; color: #25d366; display: none;
+  }
+
+  /* PAGE TITLES */
+  .page-hero {
+    padding: 120px 5% 60px;
+    background: linear-gradient(to bottom, rgba(108,99,255,0.05), transparent);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+  .page-hero .section-tag { display: block; }
+  .page-hero .section-title { margin: 0 auto 1rem; }
+
+  /* BLOG NEWSLETTER */
+  .newsletter-box {
+    background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
+    border: 1px solid var(--border); border-radius: 20px; padding: 40px;
+    text-align: center; margin-top: 3rem;
+  }
+
+  /* SEO hint for dynamic pages */
+  .dynamic-fields { animation: fadeUp 0.3s ease; }
+
+  /* sticky offer bar removed */
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo" onclick="showPage('home')">
+    <img src="https://i.ibb.co/r2p19q75/Photoroom-20260528-161505609.png" alt="GIRNEEL X Logo" onerror="this.style.display='none'">
+    <span class="nav-logo-text">GIRNEEL X</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')">Home</a></li>
+    <li><a href="#" onclick="showPage('services')">Services</a></li>
+    <li><a href="#" onclick="showPage('portfolio')">Portfolio</a></li>
+    <li><a href="#" onclick="showPage('pricing')">Pricing</a></li>
+    <li><a href="#" onclick="showPage('about')">About</a></li>
+    <li><a href="#" onclick="showPage('blog')">Blog</a></li>
+    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#" onclick="showPage('home');closeMenu()">🏠 Home</a>
+  <a href="#" onclick="showPage('services');closeMenu()">⚡ Services</a>
+  <a href="#" onclick="showPage('portfolio');closeMenu()">🎨 Portfolio</a>
+  <a href="#" onclick="showPage('pricing');closeMenu()">💰 Pricing</a>
+  <a href="#" onclick="showPage('about');closeMenu()">👤 About</a>
+  <a href="#" onclick="showPage('blog');closeMenu()">📝 Blog</a>
+  <a href="#" onclick="showPage('contact');closeMenu()">📞 Contact</a>
+  <a href="#" onclick="showPage('order');closeMenu()" style="color:var(--accent)">🚀 Apply Now</a>
+</div>
+
+<!-- ===== HOME PAGE ===== -->
+<div class="page active" id="page-home">
+  <!-- HERO -->
+  <section id="home" style="padding-top:120px">
+    <div class="hero-bg"></div>
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge"><span></span> India's Premium Digital Agency</div>
+        <h1 class="hero-title">
+          आपका Digital Future<br>
+          <span class="line2">हम Build करते हैं</span>
+          <span class="line3">Websites · SEO · YouTube Growth · Digital Strategy</span>
+        </h1>
+        <p class="hero-desc">
+          GIRNEEL X crafts high-converting websites and digital solutions for hospitals, schools, politicians, corporates & entrepreneurs across India — starting at just <strong style="color:var(--gold)">₹1999/-</strong>.
+        </p>
+        <div class="hero-actions">
+          <a href="#" class="btn-primary" onclick="showPage('order')">🚀 अपनी Website बनवाएं</a>
+          <a href="#" class="btn-outline" onclick="showPage('services')">Our Services →</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Projects Delivered</div></div>
+          <div class="stat"><div class="stat-num">₹1999</div><div class="stat-label">Starting Price</div></div>
+          <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Client Satisfaction</div></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card-stack">
+          <div class="hero-img-wrap">
+            <div class="hero-code-preview">
+<span class="code-kw">const</span> <span class="code-fn">buildWebsite</span> = <span class="code-kw">async</span> (client) => {<br>
+&nbsp;&nbsp;<span class="code-kw">const</span> design = <span class="code-str">"premium"</span>;<br>
+&nbsp;&nbsp;<span class="code-kw">const</span> tech = [<span class="code-str">"React"</span>, <span class="code-str">"Firebase"</span>];<br>
+&nbsp;&nbsp;<span class="code-kw">await</span> <span class="code-fn">deploy</span>(client.vision);<br>
+&nbsp;&nbsp;<span class="code-kw">return</span> {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;result: <span class="code-str">"🚀 Live Website"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;price: <span class="code-str">"₹1999 onwards"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;guarantee: <span class="code-str">"100% Satisfaction"</span><br>
+&nbsp;&nbsp;};<br>
+}; <span style="color:#555">// GIRNEEL X</span>
+            </div>
+          </div>
+          <div class="floating-card fc1">
+            <div class="fc-label">PROJECT STATUS</div>
+            <div class="fc-value">✅ Live</div>
+            <div class="fc-sub">Hospital Website — Raebareli</div>
+          </div>
+          <div class="floating-card fc2">
+            <div class="fc-label">STARTING FROM</div>
+            <div class="fc-value">₹1999</div>
+            <div class="fc-sub">Custom Website</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <span class="trust-label">TRUSTED BY →</span>
+    <div class="trust-marquee" id="trustMarquee">
+      <span class="trust-item"><span class="trust-icon">🏥</span>Hospitals</span>
+      <span class="trust-item"><span class="trust-icon">🏫</span>Schools & Colleges</span>
+      <span class="trust-item"><span class="trust-icon">🏛️</span>Political Campaigns</span>
+      <span class="trust-item"><span class="trust-icon">🛒</span>E-commerce Brands</span>
+      <span class="trust-item"><span class="trust-icon">💼</span>Corporate Businesses</span>
+      <span class="trust-item"><span class="trust-icon">🎨</span>Freelancers & Creators</span>
+      <span class="trust-item"><span class="trust-icon">📱</span>Startups</span>
+      <!-- duplicate for seamless loop -->
+      <span class="trust-item"><span class="trust-icon">🏥</span>Hospitals</span>
+      <span class="trust-item"><span class="trust-icon">🏫</span>Schools & Colleges</span>
+      <span class="trust-item"><span class="trust-icon">🏛️</span>Political Campaigns</span>
+      <span class="trust-item"><span class="trust-icon">🛒</span>E-commerce Brands</span>
+      <span class="trust-item"><span class="trust-icon">💼</span>Corporate Businesses</span>
+      <span class="trust-item"><span class="trust-icon">🎨</span>Freelancers & Creators</span>
+      <span class="trust-item"><span class="trust-icon">📱</span>Startups</span>
+    </div>
+  </div>
+
+  <!-- HOME SERVICES PREVIEW -->
+  <section style="padding:60px 5%">
+    <div class="section-inner">
+      <p class="section-tag reveal">What We Build</p>
+      <h2 class="section-title reveal">हर ज़रूरत के लिए<br><span class="highlight">Digital Solutions</span></h2>
+      <p class="section-sub reveal">From hospitals to politicians, from startups to e-commerce — we craft websites that convert visitors into clients.</p>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="sc-icon">🌐</div>
+          <div class="sc-title">Custom Website Development</div>
+          <div class="sc-desc">React, Firebase, Node.js powered web applications built for performance and scale.</div>
+          <span class="sc-tag">From ₹1999</span>
+        </div>
+        <div class="service-card reveal">
+          <div class="sc-icon">🎯</div>
+          <div class="sc-title">Landing Page Design</div>
+          <div class="sc-desc">High-converting, mobile-first landing pages that turn traffic into revenue.</div>
+          <span class="sc-tag">High ROI</span>
+        </div>
+        <div class="service-card reveal">
+          <div class="sc-icon">🛒</div>
+          <div class="sc-title">E-commerce Store</div>
+          <div class="sc-desc">Complete online stores with Razorpay/UPI payment gateway integration.</div>
+          <span class="sc-tag">Payment Ready</span>
+        </div>
+        <div class="service-card reveal">
+          <div class="sc-icon">📈</div>
+          <div class="sc-title">SEO Optimization</div>
+          <div class="sc-desc">Rank #1 on Google with technical SEO, content strategy, and backlink building.</div>
+          <span class="sc-tag">Google Ranking</span>
+        </div>
+        <div class="service-card reveal">
+          <div class="sc-icon">▶️</div>
+          <div class="sc-title">YouTube Growth Suite</div>
+          <div class="sc-desc">Channel creation, SEO, thumbnails, video editing — complete YouTube management.</div>
+          <span class="sc-tag">From ₹199</span>
+        </div>
+        <div class="service-card reveal">
+          <div class="sc-icon">⚡</div>
+          <div class="sc-title">Speed Optimization</div>
+          <div class="sc-desc">Ultra-fast loading times. 95+ PageSpeed score. Better rankings. Better UX.</div>
+          <span class="sc-tag">Core Web Vitals</span>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:2.5rem">
+        <a href="#" class="btn-primary" onclick="showPage('services')">View All Services →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFER BANNERS -->
+  <section style="padding:20px 5% 60px">
+    <div class="section-inner">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem">
+        <div class="offer-banner reveal">
+          <div style="font-size:0.75rem;color:var(--text3);font-family:'Space Mono',monospace;margin-bottom:10px;letter-spacing:0.1em">WEBSITE DEVELOPMENT</div>
+          <div style="font-family:'Syne',sans-serif;font-size:clamp(1.8rem,6vw,3rem);font-weight:800;color:var(--gold);text-shadow:0 0 30px rgba(255,215,0,0.4);line-height:1.1;word-break:keep-all;white-space:nowrap">₹1999/-</div>
+          <div style="font-size:0.9rem;color:var(--text2);margin-top:10px">Professional Website — Starting Price<br><small style="opacity:0.6;font-size:0.8rem">Final rate based on complexity &amp; pages</small></div>
+          <a href="#" class="btn-primary" style="display:inline-block;margin-top:1.5rem" onclick="showPage('order')">Apply Now</a>
+        </div>
+        <div class="offer-banner reveal" style="border-color:rgba(255,107,107,0.3)">
+          <div style="font-size:0.75rem;color:var(--text3);font-family:'Space Mono',monospace;margin-bottom:10px;letter-spacing:0.1em">YOUTUBE CHANNEL SETUP</div>
+          <div style="font-family:'Syne',sans-serif;font-size:clamp(1.8rem,6vw,3rem);font-weight:800;color:var(--accent2);text-shadow:0 0 30px rgba(255,107,107,0.4);line-height:1.1;word-break:keep-all;white-space:nowrap">₹199/-</div>
+          <div style="font-size:0.9rem;color:var(--text2);margin-top:10px">Professional YouTube Channel — Full Setup<br><small style="opacity:0.6;font-size:0.8rem">Channel Art, SEO, Management</small></div>
+          <a href="#" class="btn-primary" style="display:inline-block;margin-top:1.5rem;background:var(--accent2)" onclick="showPage('order')">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section style="padding:40px 5% 60px;background:var(--bg2)">
+    <div class="section-inner" style="text-align:center">
+      <p class="section-tag">Our Tech Stack</p>
+      <h2 class="section-title" style="max-width:500px;margin:0 auto 1rem">Cutting-Edge Technologies हम Use करते हैं</h2>
+      <div class="tech-grid">
+        <span class="tech-pill"><span class="tech-dot" style="background:#e34f26"></span>HTML5</span>
+        <span class="tech-pill"><span class="tech-dot" style="background:#264de4"></span>CSS3</span>
+        <span class="tech-pill"><span class="tech-dot" style="background:#f7df1e"></span>JavaScript</span>
+        <span class="tech-pill"><span class="tech-dot" style="background:#61dafb"></span>React</span>
+        <span class="tech-pill"><span class="tech-dot" style="background:#ffca28"></span>Firebase</span>
+        <span class="tech-pill"><span class="tech-dot" style="background:#339933"></span>Node.js</span>
+        <span class="tech-pill"><span class="tech-dot" style="background:#21759b"></span>WordPress</span>
+        <span class="tech-pill"><span class="tech-dot" style="background:#ff6b6b"></span>Razorpay</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOMAIN SECTION -->
+  <section style="padding:60px 5%">
+    <div class="section-inner" style="text-align:center">
+      <p class="section-tag reveal">Domain Registration</p>
+      <h2 class="section-title reveal" style="max-width:500px;margin:0 auto 1rem">अपने Brand का <span class="highlight">Domain</span> चेक करें</h2>
+      <p class="section-sub reveal" style="margin:0 auto 2rem">Enter your desired domain name and we'll check availability and register it for you.</p>
+      <div style="max-width:480px;margin:0 auto">
+        <div style="display:flex;align-items:center;gap:0.75rem;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:10px 14px;margin-bottom:12px">
+          <span style="font-size:1.1rem">🌐</span>
+          <input type="text" class="domain-input" id="domainName" placeholder="yourbrandname" style="flex:1;background:none;border:none;outline:none;color:var(--text);font-size:1rem;font-family:'DM Sans',sans-serif">
+          <select class="domain-select" id="domainExt" style="background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.9rem;cursor:pointer;outline:none">
+            <option>.com</option><option>.in</option><option>.co.in</option>
+            <option>.net</option><option>.org</option><option>.shop</option>
+          </select>
+        </div>
+        <button class="btn-primary" style="width:100%;padding:13px;border-radius:12px;font-size:1rem" onclick="checkDomain()">🔍 Check Availability → WhatsApp</button>
+      </div>
+      <p style="margin-top:1rem;font-size:0.8rem;color:var(--text3)">Domain enquiry will be sent directly to our team on WhatsApp</p>
+    </div>
+  </section>
+
+  <!-- FOUNDER SNIPPET -->
+  <section style="padding:40px 5% 80px;background:var(--bg2)">
+    <div class="section-inner">
+      <div style="display:flex;align-items:center;gap:2rem;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:32px;flex-wrap:wrap">
+        <div style="flex-shrink:0;position:relative">
+          <img id="founderHomeImg"
+            src="https://i.ibb.co/rK3qVbx7/file-0000000085dc71f5bec9ecd1173425f1.png"
+            alt="Jatin Singh Lodhi"
+            style="width:90px;height:90px;border-radius:50%;border:3px solid var(--accent);object-fit:cover;display:block"
+            onerror="this.style.display='none';document.getElementById('founderHomeFallback').style.display='flex'">
+          <div id="founderHomeFallback" style="display:none;width:90px;height:90px;border-radius:50%;border:3px solid var(--accent);background:linear-gradient(135deg,#6c63ff,#9b93ff);align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:#fff">J</div>
+        </div>
+        <div>
+          <div style="font-size:0.78rem;color:var(--accent);font-family:'Space Mono',monospace;margin-bottom:6px">FOUNDER & CEO</div>
+          <div style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:6px">Jatin Singh Lodhi</div>
+          <div style="font-size:0.88rem;color:var(--text2);">"हमारा मिशन है India के हर Business को Digital Revolution का हिस्सा बनाना — affordable prices पर premium quality के साथ।"</div>
+          <a href="#" onclick="showPage('about')" style="color:var(--accent);font-size:0.85rem;text-decoration:none;margin-top:8px;display:inline-block">Read Full Story →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== SERVICES PAGE ===== -->
+<div class="page" id="page-services">
+  <div class="page-hero">
+    <p class="section-tag">What We Offer</p>
+    <h1 class="section-title">Our <span class="highlight">Services</span></h1>
+    <p style="color:var(--text2);max-width:500px;margin:0 auto">Premium digital solutions for every business type. Transparent pricing, cutting-edge tech.</p>
+  </div>
+  <section>
+    <div class="section-inner">
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="sc-icon">🌐</div>
+          <div class="sc-title">Custom Web Development</div>
+          <div class="sc-desc">Fully custom web applications using React, Node.js, and Firebase. Responsive, fast, scalable — built from the ground up for your business needs. REST APIs, database integration, user authentication — everything included.</div>
+          <span class="sc-tag">From ₹3999</span>
+        </div>
+        <div class="service-card reveal">
+          <div class="sc-icon">🎯</div>
+          <div class="sc-title">Landing Page Design</div>
+          <div class="sc-desc">High-converting single-page websites designed to turn visitors into leads. A/B tested designs, compelling copywriting, CTA optimization. Perfect for product launches, lead generation campaigns, and promotions.</div>
+          <span class="sc-tag">From ₹1999</span>
+        </div>
+        <div class="service-card reveal">
+          <div class="sc-icon">🏢</div>
+          <div class="sc-title">Business / Corporate Website</div>
+          <div class="sc-desc">Professional multi-page corporate websites with about, services, team, blog, and contact sections. Perfect for offices, agencies, consultancies, and established businesses looking to build credibility online.</div>
+          <span class="sc-tag">From ₹2999</span>
+        </div>
+        <div class="service-card reveal">
+          <div class="sc-icon">👤</div>
+          <div class="sc-title">Portfolio Website</div>
+          <div class="sc-desc">Stunning personal portfolio sites for developers, designers, photographers, doctors, lawyers, and professionals. Showcase your work, skills, and achievements with a site that gets you hired.</div>
+          <span class="sc-tag">From ₹1999</span>
+        </div>
+        <div class="service-card reveal">
+          <div class="sc-icon">🛒</div>
+          <div class="sc-title">E-commerce Store</div>
+          <div class="sc-desc">Full-featured online stores with product catalogues, cart, wishlists, and payment gateway integration (Razorpay, PayU, UPI). Admin dashboard, order tracking, inventory management — ready to sell Day 1.</div>
+          <span class="sc-tag">From ₹5999</span>
+        </div>
+        <div class="service-card reveal">
+          <div class="sc-icon">🔄</div>
+          <div class="sc-title">Website Redesign</div>
+          <div class="sc-desc">Transform your outdated website into a modern, fast, and conversion-optimized platform. We audit, redesign, and redeploy your site while preserving SEO rankings and migrating all existing content.</div>
+          <span class="sc-tag">From ₹2499</span>
+        </div>
+        <div class="service-card reveal">
+          <div class="sc-icon">📈</div>
+          <div class="sc-title">SEO Optimization</div>
+          <div class="sc-desc">Rank on Page 1 of Google with our data-driven SEO strategy. Technical SEO audit, keyword research, on-page optimization, schema markup, backlink building, and monthly performance reports.</div>
+          <span class="sc-tag">Monthly Plans</span>
+        </div>
+        <div class="service-card reveal">
+          <div class="sc-icon">⚡</div>
+          <div class="sc-title">Speed Optimization</div>
+          <div class="sc-desc">Achieve 95+ Google PageSpeed score. Image compression, lazy loading, code minification, CDN setup, caching. Faster websites rank higher, convert better, and retain users longer.</div>
+          <span class="sc-tag">One-time</span>
+        </div>
+        <div class="service-card reveal" style="border-color:rgba(255,0,0,0.2)">
+          <div class="sc-icon" style="background:rgba(255,0,0,0.1)">▶️</div>
+          <div class="sc-title">YouTube Channel Growth Suite</div>
+          <div class="sc-desc">Complete YouTube management — Channel creation & branding, SEO-optimized titles & descriptions, professional thumbnail design, video editing, and ongoing channel management. Grow from 0 to viral.</div>
+          <span class="sc-tag" style="color:#ff0000;background:rgba(255,0,0,0.1)">From ₹199</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== PORTFOLIO PAGE ===== -->
+<div class="page" id="page-portfolio">
+  <div class="page-hero">
+    <p class="section-tag">Our Work</p>
+    <h1 class="section-title">Portfolio</h1>
+    <p style="color:var(--text2);max-width:500px;margin:0 auto">Projects we've built with love, code, and creativity for clients across India.</p>
+  </div>
+  <section>
+    <div class="section-inner">
+      <div class="portfolio-grid">
+        <div class="portfolio-card reveal">
+          <div class="port-thumb" style="background:linear-gradient(135deg,#1a0533,#3b0764)">🏥</div>
+          <div class="port-info">
+            <div class="port-cat">HEALTHCARE</div>
+            <div class="port-title">City Hospital Raebareli — Patient Portal & OPD Booking System</div>
+            <div style="font-size:0.82rem;color:var(--text3);margin-top:6px">React · Firebase · Multi-dept booking</div>
+          </div>
+        </div>
+        <div class="portfolio-card reveal">
+          <div class="port-thumb" style="background:linear-gradient(135deg,#0a1628,#1e3a5f)">🏛️</div>
+          <div class="port-info">
+            <div class="port-cat">POLITICAL</div>
+            <div class="port-title">Political Campaign Website — UP Assembly Elections 2022</div>
+            <div style="font-size:0.82rem;color:var(--text3);margin-top:6px">WordPress · SEO · Voter engagement</div>
+          </div>
+        </div>
+        <div class="portfolio-card reveal">
+          <div class="port-thumb" style="background:linear-gradient(135deg,#0d2818,#1a5c35)">🛒</div>
+          <div class="port-info">
+            <div class="port-cat">E-COMMERCE</div>
+            <div class="port-title">Fashion Brand Online Store — Razorpay Integration</div>
+            <div style="font-size:0.82rem;color:var(--text3);margin-top:6px">React · Razorpay · Inventory System</div>
+          </div>
+        </div>
+        <div class="portfolio-card reveal">
+          <div class="port-thumb" style="background:linear-gradient(135deg,#1a1005,#5c3d0d)">🏫</div>
+          <div class="port-info">
+            <div class="port-cat">EDUCATION</div>
+            <div class="port-title">School Website with Admission Form & Result Portal</div>
+            <div style="font-size:0.82rem;color:var(--text3);margin-top:6px">HTML · CSS · Firebase Database</div>
+          </div>
+        </div>
+        <div class="portfolio-card reveal">
+          <div class="port-thumb" style="background:linear-gradient(135deg,#150528,#4a0e8f)">👤</div>
+          <div class="port-info">
+            <div class="port-cat">PORTFOLIO</div>
+            <div class="port-title">Photographer's Portfolio with Gallery & Booking System</div>
+            <div style="font-size:0.82rem;color:var(--text3);margin-top:6px">React · Framer Motion · WhatsApp CTA</div>
+          </div>
+        </div>
+        <div class="portfolio-card reveal">
+          <div class="port-thumb" style="background:linear-gradient(135deg,#0a1a2e,#1e4080)">💼</div>
+          <div class="port-info">
+            <div class="port-cat">CORPORATE</div>
+            <div class="port-title">Legal Consultancy Firm — Lead Generation Website</div>
+            <div style="font-size:0.82rem;color:var(--text3);margin-top:6px">WordPress · SEO · Contact Forms</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:3rem;padding:40px;background:var(--surface);border:1px solid var(--border);border-radius:20px">
+        <h3 style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:700;margin-bottom:1rem">Ready to Add Your Project Here?</h3>
+        <p style="color:var(--text2);margin-bottom:1.5rem">Join our growing list of happy clients. Apply now to get your website built.</p>
+        <a href="#" class="btn-primary" onclick="showPage('order')">🚀 Start Your Project</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== PRICING PAGE ===== -->
+<div class="page" id="page-pricing">
+  <div class="page-hero">
+    <p class="section-tag">Transparent Pricing</p>
+    <h1 class="section-title">Simple, <span class="highlight">Honest</span> Pricing</h1>
+    <p style="color:var(--text2);max-width:500px;margin:0 auto">Starting prices. Final quote depends on your exact requirements — always fair, always transparent.</p>
+  </div>
+  <section>
+    <div class="section-inner">
+      <div class="pricing-grid">
+        <div class="pricing-card reveal">
+          <div class="pc-name">STARTER</div>
+          <div class="pc-price">₹1999 <span>onwards</span></div>
+          <div class="pc-desc">Landing page ya simple business website ke liye best</div>
+          <ul class="pc-features">
+            <li>1–3 Pages</li>
+            <li>Mobile Responsive</li>
+            <li>Contact Form</li>
+            <li>WhatsApp Button</li>
+            <li>Basic SEO Setup</li>
+            <li>3 Revisions</li>
+          </ul>
+          <a href="#" class="btn-primary" style="width:100%;display:block;text-align:center" onclick="showPage('order')">Apply Now</a>
+        </div>
+        <div class="pricing-card featured reveal">
+          <div class="pc-name">BUSINESS</div>
+          <div class="pc-price">₹3999 <span>onwards</span></div>
+          <div class="pc-desc">Growing business ya professionals ke liye — complete solution</div>
+          <ul class="pc-features">
+            <li>5–10 Pages</li>
+            <li>Custom Design</li>
+            <li>Blog Section</li>
+            <li>Google Maps</li>
+            <li>Advanced SEO</li>
+            <li>Speed Optimized</li>
+            <li>WhatsApp Live Chat</li>
+            <li>5 Revisions</li>
+          </ul>
+          <a href="#" class="btn-primary" style="width:100%;display:block;text-align:center" onclick="showPage('order')">Apply Now</a>
+        </div>
+        <div class="pricing-card reveal">
+          <div class="pc-name">ENTERPRISE</div>
+          <div class="pc-price">₹7999 <span>onwards</span></div>
+          <div class="pc-desc">Hospitals, E-commerce, Political — high-complexity projects</div>
+          <ul class="pc-features">
+            <li>Unlimited Pages</li>
+            <li>User Login System</li>
+            <li>Payment Gateway</li>
+            <li>Admin Dashboard</li>
+            <li>Chatbot Integration</li>
+            <li>Full SEO Package</li>
+            <li>Priority Support</li>
+            <li>Unlimited Revisions</li>
+          </ul>
+          <a href="#" class="btn-primary" style="width:100%;display:block;text-align:center" onclick="showPage('order')">Apply Now</a>
+        </div>
+      </div>
+      <div class="disclaimer-box reveal" style="margin-top:2rem;max-width:700px;margin-left:auto;margin-right:auto">
+        <span class="d-icon">⚠️</span>
+        <strong>Important Notice:</strong> ऊपर दी गई prices <em>starting prices</em> हैं। आपकी website बनाने का <strong>Final Rate</strong> आपके काम की जटिलता, pages की संख्या, features और timeline के अनुसार तय किया जाएगा। Free consultation के बाद exact quote दिया जाएगा।
+      </div>
+      <div style="text-align:center;margin-top:2rem">
+        <a href="#" class="btn-primary" onclick="showPage('order')">🚀 Free Quote लें — Apply करें</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== ABOUT PAGE ===== -->
+<div class="page" id="page-about">
+  <div class="page-hero">
+    <p class="section-tag">Our Story</p>
+    <h1 class="section-title">About <span class="highlight">GIRNEEL X</span></h1>
+  </div>
+  <section>
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="founder-img-wrap">
+          <img id="founderAboutImg"
+            src="https://i.ibb.co/rK3qVbx7/file-0000000085dc71f5bec9ecd1173425f1.png"
+            alt="Jatin Singh Lodhi - Founder GIRNEEL X"
+            class="founder-img"
+            onerror="this.style.display='none';document.getElementById('founderAboutFallback').style.display='flex'">
+          <div id="founderAboutFallback" style="display:none;width:100%;height:400px;border-radius:20px;border:2px solid var(--border);background:linear-gradient(135deg,#0f0f17,#1a1a28);align-items:center;justify-content:center;flex-direction:column;gap:12px">
+            <div style="width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,#6c63ff,#9b93ff);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:#fff">J</div>
+            <div style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;color:var(--text)">Jatin Singh Lodhi</div>
+            <div style="font-size:0.8rem;color:var(--accent);font-family:'Space Mono',monospace">Founder & CEO — GIRNEEL X</div>
+          </div>
+          <div class="founder-badge-wrap">
+            <div class="fb-num">Founder</div>
+            <div class="fb-label">GIRNEEL X</div>
+          </div>
+        </div>
+        <div>
+          <p class="section-tag">Founder's Story</p>
+          <h2 class="section-title">Jatin Singh Lodhi — <span class="highlight">Digital Visionary</span></h2>
+          <p style="color:var(--text2);margin-bottom:1rem;line-height:1.8">
+            Raebareli, Uttar Pradesh की छोटी सी गली में एक बड़ा सपना पला — कि India के हर छोटे business को, हर hospital को, हर politician को, हर student को एक professional digital presence मिले। बस यहीं से जन्म हुआ <strong style="color:var(--text)">GIRNEEL X</strong> का।
+          </p>
+          <p style="color:var(--text2);margin-bottom:1rem;line-height:1.8">
+            Jatin Singh Lodhi — एक self-taught developer जिसने HTML से शुरू करके आज React, Firebase, और Node.js में mastery हासिल की है। उनका मानना है कि <em style="color:var(--accent)">"एक अच्छी website बनाना rocket science नहीं होना चाहिए, और न ही pocket-draining।"</em>
+          </p>
+          <p style="color:var(--text2);margin-bottom:2rem;line-height:1.8">
+            Village Kodar, District Raebareli से operate करते हुए, GIRNEEL X आज UP के hospitals, schools, political campaigns और corporates के लिए premium digital solutions deliver कर रहा है — सिर्फ ₹1999 से शुरू।
+          </p>
+          <div class="vision-grid">
+            <div class="vision-card">
+              <div class="vc-icon">🎯</div>
+              <div class="vc-title">Our Mission</div>
+              <div class="vc-text">India के हर business को affordable, premium-quality digital presence देना — चाहे गाँव हो या शहर।</div>
+            </div>
+            <div class="vision-card">
+              <div class="vc-icon">🔭</div>
+              <div class="vc-title">Our Vision</div>
+              <div class="vc-text">2030 तक India's most trusted digital agency बनना — 10,000+ businesses को digitally transform करना।</div>
+            </div>
+            <div class="vision-card">
+              <div class="vc-icon">💡</div>
+              <div class="vc-title">Our Values</div>
+              <div class="vc-text">Transparency. Quality. Affordability. Client satisfaction सबसे पहले — हमेशा।</div>
+            </div>
+            <div class="vision-card">
+              <div class="vc-icon">📍</div>
+              <div class="vc-title">Our Base</div>
+              <div class="vc-text">Building 215, Village Kodar, Raebareli, UP — Serving clients across India remotely.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== CONTACT PAGE ===== -->
+<div class="page" id="page-contact">
+  <div class="page-hero">
+    <p class="section-tag">Get In Touch</p>
+    <h1 class="section-title">Contact <span class="highlight">Us</span></h1>
+    <p style="color:var(--text2);max-width:500px;margin:0 auto">Ready to build something great? हमसे बात करें। Free consultation available.</p>
+  </div>
+  <section>
+    <div class="section-inner">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>हम यहाँ हैं आपके लिए</h3>
+          <div class="contact-item">
+            <div class="ci-icon">📧</div>
+            <div>
+              <div class="ci-label">EMAIL</div>
+              <div class="ci-value">girneelxprivatelimited@gmail.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">📱</div>
+            <div>
+              <div class="ci-label">WHATSAPP / CALL</div>
+              <div class="ci-value">+91 29640 708</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">📍</div>
+            <div>
+              <div class="ci-label">ADDRESS</div>
+              <div class="ci-value">Building No. 215, Village Kodar,<br>District Raebareli, Uttar Pradesh, India</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">⏰</div>
+            <div>
+              <div class="ci-label">WORKING HOURS</div>
+              <div class="ci-value">Mon – Sat: 9 AM – 8 PM IST</div>
+            </div>
+          </div>
+          <a href="https://wa.me/9129640708?text=Hello%20GIRNEEL%20X!%20I%20want%20to%20discuss%20a%20project." target="_blank" class="btn-primary" style="display:flex;align-items:center;gap:8px;margin-top:1.5rem;width:fit-content">
+            💬 Chat on WhatsApp
+          </a>
+        </div>
+        <div class="form-card">
+          <h3 style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem">Send us a Message</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" class="form-input" id="cName" placeholder="Aapka naam...">
+            </div>
+            <div class="form-group">
+              <label class="form-label">WhatsApp Number *</label>
+              <input type="tel" class="form-input" id="cPhone" placeholder="+91 XXXXX XXXXX">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" id="cEmail" placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <input type="text" class="form-input" id="cSubject" placeholder="Website banwani hai / Query...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-textarea" id="cMessage" placeholder="Apni requirement describe karein..."></textarea>
+          </div>
+          <button class="btn-primary" style="width:100%;padding:14px" onclick="sendContactWA()">💬 Send via WhatsApp</button>
+          <div class="success-msg" id="contactSuccess" style="margin-top:1rem;display:none">✅ Message sent! We'll respond within 2 hours.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== BLOG PAGE ===== -->
+<div class="page" id="page-blog">
+  <div class="page-hero">
+    <p class="section-tag">Knowledge Hub</p>
+    <h1 class="section-title">Blog & <span class="highlight">Insights</span></h1>
+    <p style="color:var(--text2);max-width:500px;margin:0 auto">Tech, growth hacks, SEO tips, and digital marketing advice for Indian businesses.</p>
+  </div>
+  <section>
+    <div class="section-inner">
+      <div class="blog-grid">
+        <div class="blog-card reveal">
+          <div class="blog-thumb" style="background:linear-gradient(135deg,#0f0f1f,#1a1a3e)">📈</div>
+          <div class="blog-content">
+            <div class="blog-tag">SEO · HINDI</div>
+            <div class="blog-title">2025 में अपनी Website को Google Page 1 पर कैसे लाएं — Complete Guide</div>
+            <div class="blog-excerpt">Google ranking secrets जो बड़ी agencies छुपाती हैं, वो हम आपको free में बता रहे हैं...</div>
+            <div class="blog-meta"><span>📅 Jan 2025</span><span>⏱ 8 min read</span></div>
+          </div>
+        </div>
+        <div class="blog-card reveal">
+          <div class="blog-thumb" style="background:linear-gradient(135deg,#0f1f0f,#1a3e1a)">▶️</div>
+          <div class="blog-content">
+            <div class="blog-tag">YOUTUBE · GROWTH</div>
+            <div class="blog-title">YouTube Channel 0 से 1000 Subscribers — 30 दिनों में Proven Strategy</div>
+            <div class="blog-excerpt">हमने खुद इस strategy से multiple channels grow किए हैं। अब आपकी बारी...</div>
+            <div class="blog-meta"><span>📅 Feb 2025</span><span>⏱ 6 min read</span></div>
+          </div>
+        </div>
+        <div class="blog-card reveal">
+          <div class="blog-thumb" style="background:linear-gradient(135deg,#1f0f0f,#3e1a1a)">⚡</div>
+          <div class="blog-content">
+            <div class="blog-tag">TECH · PERFORMANCE</div>
+            <div class="blog-title">Website Speed Optimization — 95+ PageSpeed Score कैसे पाएं 2025 में</div>
+            <div class="blog-excerpt">Slow websites lose customers. यहाँ है complete checklist आपकी site को rocket बनाने की...</div>
+            <div class="blog-meta"><span>📅 Mar 2025</span><span>⏱ 5 min read</span></div>
+          </div>
+        </div>
+        <div class="blog-card reveal">
+          <div class="blog-thumb" style="background:linear-gradient(135deg,#0f0f1f,#2a0a4e)">🏥</div>
+          <div class="blog-content">
+            <div class="blog-tag">HEALTHCARE · DIGITAL</div>
+            <div class="blog-title">Hospital Website क्यों ज़रूरी है? — Patient Trust और Online OPD Booking Guide</div>
+            <div class="blog-excerpt">84% patients पहले Google पर hospital ढूंढते हैं। क्या आपका hospital वहाँ दिखता है?</div>
+            <div class="blog-meta"><span>📅 Apr 2025</span><span>⏱ 7 min read</span></div>
+          </div>
+        </div>
+        <div class="blog-card reveal">
+          <div class="blog-thumb" style="background:linear-gradient(135deg,#001520,#003366)">🏛️</div>
+          <div class="blog-content">
+            <div class="blog-tag">POLITICS · DIGITAL</div>
+            <div class="blog-title">Election Campaign Website — 2024 में Politician को Digital क्यों होना चाहिए</div>
+            <div class="blog-excerpt">Voter तक पहुँचने का सबसे सस्ता और असरदार तरीका — एक powerful campaign website...</div>
+            <div class="blog-meta"><span>📅 May 2025</span><span>⏱ 6 min read</span></div>
+          </div>
+        </div>
+        <div class="blog-card reveal">
+          <div class="blog-thumb" style="background:linear-gradient(135deg,#1f1000,#4a2800)">🛒</div>
+          <div class="blog-content">
+            <div class="blog-tag">E-COMMERCE · INDIA</div>
+            <div class="blog-title">₹5999 में E-commerce Store — Razorpay Integration Complete Tutorial</div>
+            <div class="blog-excerpt">Apna online store kholna ab ₹5999 se karo shuru. Yahan hai complete roadmap...</div>
+            <div class="blog-meta"><span>📅 Jun 2025</span><span>⏱ 10 min read</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="newsletter-box reveal">
+        <h3 style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:700;margin-bottom:0.5rem">📬 Weekly Digital Tips पाएं Free में</h3>
+        <p style="color:var(--text2);margin-bottom:1.5rem">SEO, website tips, YouTube hacks — हर हफ्ते सीधे WhatsApp पर।</p>
+        <div style="display:flex;gap:1rem;max-width:400px;margin:0 auto;flex-wrap:wrap">
+          <input type="tel" class="form-input" placeholder="+91 WhatsApp Number" id="nlPhone" style="flex:1">
+          <button class="btn-primary" onclick="subscribeNewsletter()">Subscribe →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== ORDER / APPLICATION PAGE ===== -->
+<div class="page" id="page-order">
+  <div class="page-hero">
+    <p class="section-tag">Website Application System</p>
+    <h1 class="section-title">अपनी Website बनवाने के लिए<br><span class="highlight">आवेदन करें</span></h1>
+    <p style="color:var(--text2);max-width:600px;margin:1rem auto 0">Step-by-step form fill करें। हम 2 घंटे में आपको WhatsApp पर contact करेंगे और exact quote देंगे।</p>
+  </div>
+  <section>
+    <div class="app-form-wrap">
+      <!-- STEP INDICATOR -->
+      <div class="step-indicator">
+        <div class="step-dot active" id="sdot1" onclick="goToStep(1)">1 · आपकी Info</div>
+        <div class="step-dot" id="sdot2" onclick="goToStep(2)">2 · Category</div>
+        <div class="step-dot" id="sdot3" onclick="goToStep(3)">3 · Details</div>
+        <div class="step-dot" id="sdot4" onclick="goToStep(4)">4 · Features</div>
+      </div>
+
+      <!-- STEP 1: USER INFO -->
+      <div class="step-panel active" id="step1">
+        <div class="form-card">
+          <div class="step-title">👤 आपकी Basic Information</div>
+          <div class="step-sub">बताएं हम किसके लिए website बना रहे हैं।</div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Full Name / पूरा नाम *</label>
+              <input type="text" class="form-input" id="s1Name" placeholder="Aapka pura naam...">
+            </div>
+            <div class="form-group">
+              <label class="form-label">WhatsApp Number *</label>
+              <input type="tel" class="form-input" id="s1Phone" placeholder="+91 XXXXX XXXXX">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-input" id="s1Email" placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Business / Organization Name *</label>
+            <input type="text" class="form-input" id="s1Business" placeholder="Aapka business ya organization ka naam...">
+          </div>
+          <div class="form-nav"><button class="btn-step btn-step-next" onclick="nextStep(1)">Next: Website Category →</button></div>
+        </div>
+      </div>
+
+      <!-- STEP 2: CATEGORY -->
+      <div class="step-panel" id="step2">
+        <div class="form-card">
+          <div class="step-title">🏷️ Website Category चुनें</div>
+          <div class="step-sub">आप किस type की website बनवाना चाहते हैं?</div>
+          <div class="cat-grid" id="catGrid">
+            <div class="cat-card" onclick="selectCat(this,'Hospital/Healthcare')"><div class="cat-card-icon">🏥</div><div class="cat-card-label">Hospital / Healthcare</div></div>
+            <div class="cat-card" onclick="selectCat(this,'School/College')"><div class="cat-card-icon">🏫</div><div class="cat-card-label">School / College</div></div>
+            <div class="cat-card" onclick="selectCat(this,'Corporate Business')"><div class="cat-card-icon">🏢</div><div class="cat-card-label">Corporate Business</div></div>
+            <div class="cat-card" onclick="selectCat(this,'Personal Portfolio')"><div class="cat-card-icon">👤</div><div class="cat-card-label">Personal Portfolio</div></div>
+            <div class="cat-card" onclick="selectCat(this,'Political Party/Politician')"><div class="cat-card-icon">🏛️</div><div class="cat-card-label">Political Party / Politician</div></div>
+            <div class="cat-card" onclick="selectCat(this,'E-commerce Store')"><div class="cat-card-icon">🛒</div><div class="cat-card-label">E-commerce Store</div></div>
+            <div class="cat-card" onclick="selectCat(this,'Blog/News Portal')"><div class="cat-card-icon">📝</div><div class="cat-card-label">Blog / News Portal</div></div>
+            <div class="cat-card" onclick="selectCat(this,'Custom/Other')"><div class="cat-card-icon">✨</div><div class="cat-card-label">Custom / Other</div></div>
+          </div>
+          <div class="form-nav">
+            <button class="btn-step btn-step-prev" onclick="prevStep(2)">← Back</button>
+            <button class="btn-step btn-step-next" onclick="nextStep(2)">Next: Project Details →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3: DYNAMIC DETAILS -->
+      <div class="step-panel" id="step3">
+        <div class="form-card">
+          <div class="step-title" id="s3Title">📋 Project Details</div>
+          <div class="step-sub" id="s3Sub">Apni specific requirements batayein</div>
+          <div id="dynamicFields">
+            <!-- Rendered by JS based on category -->
+          </div>
+          <div class="form-group">
+            <label class="form-label">Preferred Launch Timeline / Website kab chahiye? *</label>
+            <select class="form-select" id="s3Timeline">
+              <option value="">-- Select Timeline --</option>
+              <option>ASAP (1 week)</option>
+              <option>2-3 weeks</option>
+              <option>1 month</option>
+              <option>2+ months</option>
+              <option>No deadline (take your time)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Reference Website (if any)</label>
+            <input type="url" class="form-input" id="s3Ref" placeholder="https://example.com (optional)">
+          </div>
+          <div class="form-nav">
+            <button class="btn-step btn-step-prev" onclick="prevStep(3)">← Back</button>
+            <button class="btn-step btn-step-next" onclick="nextStep(3)">Next: Features & Scope →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4: FEATURES + SUBMIT -->
+      <div class="step-panel" id="step4">
+        <div class="form-card">
+          <div class="step-title">⚙️ Features & Scope</div>
+          <div class="step-sub">आप किन features की ज़रूरत है? (Multiple select करें)</div>
+
+          <label class="form-label" style="margin-bottom:10px;display:block">Number of Pages:</label>
+          <select class="form-select" id="s4Pages" style="margin-bottom:1.2rem">
+            <option>1-3 Pages</option>
+            <option>4-7 Pages</option>
+            <option>8-15 Pages</option>
+            <option>15+ Pages</option>
+            <option>I don't know yet</option>
+          </select>
+
+          <label class="form-label" style="margin-bottom:10px;display:block">Additional Features चाहिए: (सभी select करें जो चाहिए)</label>
+          <div class="checkbox-grid">
+            <div class="checkbox-item"><input type="checkbox" id="f1" value="Chatbot Integration"><label for="f1">🤖 Chatbot</label></div>
+            <div class="checkbox-item"><input type="checkbox" id="f2" value="Payment Gateway (Razorpay/UPI)"><label for="f2">💳 Payment Gateway</label></div>
+            <div class="checkbox-item"><input type="checkbox" id="f3" value="User Login/Register System"><label for="f3">🔐 User Login System</label></div>
+            <div class="checkbox-item"><input type="checkbox" id="f4" value="SEO Optimization Pack"><label for="f4">📈 SEO Pack</label></div>
+            <div class="checkbox-item"><input type="checkbox" id="f5" value="Blog Section"><label for="f5">📝 Blog Section</label></div>
+            <div class="checkbox-item"><input type="checkbox" id="f6" value="WhatsApp Chat Widget"><label for="f6">💬 WhatsApp Widget</label></div>
+            <div class="checkbox-item"><input type="checkbox" id="f7" value="Google Maps Integration"><label for="f7">📍 Google Maps</label></div>
+            <div class="checkbox-item"><input type="checkbox" id="f8" value="Social Media Integration"><label for="f8">📱 Social Media</label></div>
+            <div class="checkbox-item"><input type="checkbox" id="f9" value="Contact/Lead Forms"><label for="f9">📋 Contact Forms</label></div>
+            <div class="checkbox-item"><input type="checkbox" id="f10" value="Speed Optimization"><label for="f10">⚡ Speed Boost</label></div>
+            <div class="checkbox-item"><input type="checkbox" id="f11" value="Admin Dashboard"><label for="f11">🖥️ Admin Panel</label></div>
+            <div class="checkbox-item"><input type="checkbox" id="f12" value="Multi-language Support"><label for="f12">🌐 Multi-language</label></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Approximate Budget (Optional)</label>
+            <select class="form-select" id="s4Budget">
+              <option value="">-- Budget Range --</option>
+              <option>Under ₹2000</option>
+              <option>₹2000 – ₹5000</option>
+              <option>₹5000 – ₹10,000</option>
+              <option>₹10,000 – ₹25,000</option>
+              <option>₹25,000+</option>
+              <option>Discuss after consultation</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Kuch aur batana chahte hain? (Any special requirements)</label>
+            <textarea class="form-textarea" id="s4Notes" placeholder="Koi bhi specific requirement, design preference, ya additional information yahan likhein..."></textarea>
+          </div>
+
+          <div class="disclaimer-box">
+            <span class="d-icon">ℹ️</span>
+            <strong>Pricing Disclaimer:</strong> आपकी website बनाने का <strong>Final Rate</strong> आपके काम की जटिलता और pages की संख्या के अनुसार तय किया जाएगा। यह form submit करने पर हम 2 घंटे के अंदर आपको WhatsApp पर contact करेंगे और एक <strong>free consultation call</strong> करेंगे।
+          </div>
+
+          <div class="form-nav" style="flex-direction:column">
+            <button class="btn-step btn-step-submit" onclick="submitOrder()">
+              🚀 Submit Order / Application → WhatsApp पर भेजें
+            </button>
+            <button class="btn-step btn-step-prev" onclick="prevStep(4)" style="width:100%;text-align:center">← Back to Features</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ===== PRIVACY POLICY PAGE ===== -->
+<div class="page" id="page-privacy">
+  <div class="page-hero">
+    <p class="section-tag">Legal</p>
+    <h1 class="section-title">Privacy <span class="highlight">Policy</span></h1>
+    <p style="color:var(--text2)">Last Updated: May 2025</p>
+  </div>
+  <section>
+    <div class="section-inner" style="max-width:800px">
+      <div class="privacy-content">
+        <h2>1. Information We Collect</h2>
+        <p>GIRNEEL X ("we", "us", "our") collects information you voluntarily provide when you fill out our website order form, contact form, or newsletter subscription. This includes your name, phone number, email address, business name, and project requirements.</p>
+
+        <h2>2. How We Use Your Information</h2>
+        <p>The information you provide is used exclusively to:</p>
+        <ul>
+          <li>Contact you regarding your website project inquiry</li>
+          <li>Provide you with a project quote and consultation</li>
+          <li>Send you updates about your ongoing project</li>
+          <li>Share relevant digital marketing tips (only if you subscribed)</li>
+        </ul>
+
+        <h2>3. WhatsApp Communication</h2>
+        <p>By submitting our order or contact form, you consent to being contacted via WhatsApp at the number provided. We use WhatsApp to deliver your inquiry details to our team and to communicate with you about your project.</p>
+
+        <h2>4. Data Sharing</h2>
+        <p>We do NOT sell, trade, or share your personal information with any third parties. Your data is strictly used for project communication purposes only. We use WhatsApp (Meta) as our primary communication channel; their privacy policy applies to messages transmitted through their platform.</p>
+
+        <h2>5. Data Storage</h2>
+        <p>Your inquiry data submitted via forms is transmitted directly to our WhatsApp. We do not maintain a server-side database of user information. Data stored in WhatsApp is subject to Meta's privacy policy.</p>
+
+        <h2>6. Cookies</h2>
+        <p>This website may use basic browser cookies for functionality purposes only. We do not use tracking cookies or advertising cookies. You can disable cookies in your browser settings at any time.</p>
+
+        <h2>7. Your Rights</h2>
+        <p>You have the right to request deletion of your personal information at any time. To do so, contact us at girneelxprivatelimited@gmail.com or WhatsApp us at +91 29640 708.</p>
+
+        <h2>8. Security</h2>
+        <p>We take reasonable precautions to protect your personal information. However, no data transmission over the internet is 100% secure. We encourage you to contact us only through our official channels.</p>
+
+        <h2>9. Children's Privacy</h2>
+        <p>Our services are not directed to individuals under the age of 18. We do not knowingly collect personal information from minors.</p>
+
+        <h2>10. Changes to This Policy</h2>
+        <p>We may update this Privacy Policy from time to time. Changes will be reflected on this page with a new "Last Updated" date.</p>
+
+        <h2>11. Contact Us</h2>
+        <p>For privacy-related inquiries: <strong>girneelxprivatelimited@gmail.com</strong> | WhatsApp: +91 29640 708</p>
+        <p>Address: Building No. 215, Village Kodar, District Raebareli, Uttar Pradesh, India</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="https://i.ibb.co/r2p19q75/Photoroom-20260528-161505609.png" alt="GIRNEEL X" onerror="this.style.display='none'">
+      <div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:0.5rem;background:linear-gradient(135deg,#fff,var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent">GIRNEEL X</div>
+      <p>India's Premium Digital Agency. Websites, SEO & YouTube Growth — starting ₹1999. Based in Raebareli, UP. Serving clients across India.</p>
+      <div style="margin-top:1.2rem;display:flex;gap:1rem">
+        <a href="https://wa.me/9129640708" target="_blank" style="color:#25d366;font-size:1.3rem;text-decoration:none">💬</a>
+        <a href="mailto:girneelxprivatelimited@gmail.com" style="color:var(--accent);font-size:1.3rem;text-decoration:none">📧</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#" onclick="showPage('services')">Web Development</a>
+      <a href="#" onclick="showPage('services')">Landing Pages</a>
+      <a href="#" onclick="showPage('services')">E-commerce</a>
+      <a href="#" onclick="showPage('services')">SEO</a>
+      <a href="#" onclick="showPage('services')">YouTube Growth</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#" onclick="showPage('about')">About Us</a>
+      <a href="#" onclick="showPage('portfolio')">Portfolio</a>
+      <a href="#" onclick="showPage('pricing')">Pricing</a>
+      <a href="#" onclick="showPage('blog')">Blog</a>
+      <a href="#" onclick="showPage('contact')">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#" onclick="showPage('privacy')">Privacy Policy</a>
+      <a href="#" onclick="showPage('contact')">Terms of Service</a>
+      <div style="margin-top:1rem;font-size:0.82rem;color:var(--text3)">
+        📍 Bldg 215, Village Kodar,<br>Raebareli, UP, India
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 GIRNEEL X. All rights reserved. | Founded by Jatin Singh Lodhi</span>
+    <span>Made with ❤️ in India 🇮🇳</span>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/9129640708?text=Hello%20GIRNEEL%20X!%20I%20want%20to%20discuss%20a%20project." target="_blank" class="wa-float">
+  <span class="wa-float-label">Chat on WhatsApp</span>
+  <svg width="28" height="28" viewBox="0 0 32 32" fill="white">
+    <path d="M16.004 2.667C8.637 2.667 2.667 8.637 2.667 16c0 2.344.635 4.635 1.833 6.656L2.667 29.333l6.927-1.812A13.27 13.27 0 0016.004 29.333c7.363 0 13.33-5.97 13.33-13.333 0-7.363-5.967-13.333-13.33-13.333zm0 24.333c-2.15 0-4.25-.578-6.104-1.672l-.437-.26-4.115 1.076 1.093-4.006-.283-.455A11 11 0 015.002 16C5.002 9.924 9.928 5 16.004 5c6.076 0 11 4.924 11 11s-4.924 11-11 11zm6.044-8.226c-.33-.165-1.952-.963-2.254-1.073-.301-.11-.521-.165-.74.165-.22.33-.852 1.073-1.045 1.293-.192.22-.385.247-.715.082a9.01 9.01 0 01-2.654-1.638 9.97 9.97 0 01-1.836-2.286c-.192-.33-.02-.51.144-.674.148-.148.33-.385.494-.578.165-.192.22-.33.33-.55.11-.22.055-.413-.028-.578-.082-.165-.74-1.786-1.014-2.444-.268-.64-.537-.553-.74-.563-.191-.009-.411-.011-.631-.011-.22 0-.578.082-.88.412-.303.33-1.155 1.128-1.155 2.75 0 1.62 1.182 3.187 1.346 3.406.165.22 2.325 3.551 5.636 4.98a19.04 19.04 0 001.882.695c.79.25 1.51.215 2.079.13.634-.094 1.952-.799 2.228-1.57.275-.771.275-1.432.192-1.57-.082-.137-.303-.22-.633-.385z"/>
+  </svg>
+</a>
+
+<script>
+// ===========================
+// PAGE NAVIGATION
+// ===========================
+let currentPage = 'home';
+
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + page);
+  if (target) {
+    target.classList.add('active');
+    currentPage = page;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    initReveal();
+  }
+}
+
+// ===========================
+// NAV SCROLL EFFECT
+// ===========================
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('mainNav');
+  if (window.scrollY > 50) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+  checkReveal();
+});
+
+// ===========================
+// MOBILE MENU
+// ===========================
+function toggleMenu() {
+  document.getElementById('mobileNav').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobileNav').classList.remove('open');
+}
+
+// ===========================
+// SCROLL REVEAL
+// ===========================
+function checkReveal() {
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 60) {
+      el.classList.add('visible');
+    }
+  });
+}
+function initReveal() {
+  setTimeout(checkReveal, 100);
+}
+window.addEventListener('load', initReveal);
+document.addEventListener('DOMContentLoaded', initReveal);
+
+// ===========================
+// MULTI-STEP FORM
+// ===========================
+let currentStep = 1;
+let selectedCategory = '';
+let orderData = {};
+
+function goToStep(n) {
+  // only go back/fwd if valid
+  if (n < currentStep) prevStep(currentStep);
+}
+
+function nextStep(step) {
+  if (step === 1) {
+    const name = document.getElementById('s1Name').value.trim();
+    const phone = document.getElementById('s1Phone').value.trim();
+    const biz = document.getElementById('s1Business').value.trim();
+    if (!name || !phone || !biz) { alert('⚠️ Please fill all required fields (Name, WhatsApp, Business Name)'); return; }
+    orderData.name = name;
+    orderData.phone = phone;
+    orderData.email = document.getElementById('s1Email').value.trim();
+    orderData.business = biz;
+  }
+  if (step === 2) {
+    if (!selectedCategory) { alert('⚠️ Please select a website category'); return; }
+    orderData.category = selectedCategory;
+    renderDynamicFields(selectedCategory);
+  }
+  if (step === 3) {
+    orderData.timeline = document.getElementById('s3Timeline').value;
+    orderData.reference = document.getElementById('s3Ref').value.trim();
+    // collect dynamic fields
+    const dynInputs = document.querySelectorAll('#dynamicFields input, #dynamicFields select, #dynamicFields textarea');
+    let dynData = [];
+    dynInputs.forEach(inp => {
+      if (inp.value) dynData.push(`${inp.placeholder || inp.name || 'Detail'}: ${inp.value}`);
+    });
+    orderData.dynamicDetails = dynData.join(' | ');
+  }
+
+  setStep(step + 1);
+}
+
+function prevStep(step) {
+  setStep(step - 1);
+}
+
+function setStep(n) {
+  if (n < 1 || n > 4) return;
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById('step' + i).classList.remove('active');
+    const dot = document.getElementById('sdot' + i);
+    dot.classList.remove('active', 'done');
+    if (i < n) dot.classList.add('done');
+    if (i === n) dot.classList.add('active');
+  }
+  document.getElementById('step' + n).classList.add('active');
+  currentStep = n;
+  window.scrollTo({ top: 200, behavior: 'smooth' });
+}
+
+function selectCat(el, cat) {
+  document.querySelectorAll('.cat-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedCategory = cat;
+}
+
+function renderDynamicFields(cat) {
+  const container = document.getElementById('dynamicFields');
+  document.getElementById('s3Title').textContent = `📋 ${cat} — Project Details`;
+  document.getElementById('s3Sub').textContent = `अपनी ${cat} website के specific requirements batayein`;
+
+  let html = '';
+  if (cat === 'Hospital/Healthcare') {
+    html = `
+      <div class="form-group dynamic-fields"><label class="form-label">Hospital Name *</label><input type="text" class="form-input" placeholder="Hospital ka pura naam..."></div>
+      <div class="form-group"><label class="form-label">Hospital Address *</label><input type="text" class="form-input" placeholder="Full address..."></div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Number of Departments</label><input type="number" class="form-input" placeholder="e.g. 8"></div>
+        <div class="form-group"><label class="form-label">Bed Capacity</label><input type="number" class="form-input" placeholder="e.g. 100"></div>
+      </div>
+      <div class="form-group"><label class="form-label">Medical Specialities (comma-separated)</label><input type="text" class="form-input" placeholder="e.g. Cardiology, Ortho, Pediatrics..."></div>
+      <div class="form-group"><label class="form-label">Do you need Online OPD Booking?</label><select class="form-select"><option>Yes, online appointments</option><option>No, just info website</option></select></div>`;
+  } else if (cat === 'Political Party/Politician') {
+    html = `
+      <div class="form-group"><label class="form-label">Party / Candidate Name *</label><input type="text" class="form-input" placeholder="Party ya candidate ka naam..."></div>
+      <div class="form-group"><label class="form-label">Target Constituency *</label><input type="text" class="form-input" placeholder="Constituency / Area ka naam..."></div>
+      <div class="form-group"><label class="form-label">Election Type</label><select class="form-select"><option>Lok Sabha</option><option>Vidhan Sabha</option><option>Zila Panchayat</option><option>Municipal</option><option>Other</option></select></div>
+      <div class="form-group"><label class="form-label">Key Achievements / Manifesto highlights</label><textarea class="form-textarea" placeholder="Main achievements ya promises jo website par dikhane hain..."></textarea></div>`;
+  } else if (cat === 'School/College') {
+    html = `
+      <div class="form-group"><label class="form-label">Institution Name *</label><input type="text" class="form-input" placeholder="School/College ka naam..."></div>
+      <div class="form-group"><label class="form-label">Affiliation / Board</label><input type="text" class="form-input" placeholder="e.g. CBSE, UP Board, University..."></div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Classes / Courses Offered</label><input type="text" class="form-input" placeholder="e.g. Class 1-12, BA, B.Com..."></div>
+        <div class="form-group"><label class="form-label">Total Students</label><input type="number" class="form-input" placeholder="Approx number..."></div>
+      </div>
+      <div class="form-group"><label class="form-label">Do you need Online Admission Form?</label><select class="form-select"><option>Yes</option><option>No</option></select></div>`;
+  } else if (cat === 'E-commerce Store') {
+    html = `
+      <div class="form-group"><label class="form-label">Product Category *</label><input type="text" class="form-input" placeholder="e.g. Clothing, Electronics, Food..."></div>
+      <div class="form-row">
+        <div class="form-group"><label class="form-label">Approximate No. of Products</label><input type="number" class="form-input" placeholder="e.g. 50"></div>
+        <div class="form-group"><label class="form-label">Payment Method</label><select class="form-select"><option>Razorpay</option><option>UPI Only</option><option>COD Only</option><option>All methods</option></select></div>
+      </div>
+      <div class="form-group"><label class="form-label">Do you need Inventory/Order Management?</label><select class="form-select"><option>Yes, full dashboard</option><option>Basic order tracking only</option><option>Not needed</option></select></div>`;
+  } else if (cat === 'Corporate Business') {
+    html = `
+      <div class="form-group"><label class="form-label">Business Type / Industry *</label><input type="text" class="form-input" placeholder="e.g. Real Estate, Consultancy, Manufacturing..."></div>
+      <div class="form-group"><label class="form-label">Main Services/Products</label><textarea class="form-textarea" placeholder="List your main services or products..."></textarea></div>
+      <div class="form-group"><label class="form-label">Do you need Lead Generation Forms?</label><select class="form-select"><option>Yes</option><option>No</option></select></div>`;
+  } else if (cat === 'Personal Portfolio') {
+    html = `
+      <div class="form-group"><label class="form-label">Your Profession *</label><input type="text" class="form-input" placeholder="e.g. Developer, Designer, Doctor, Lawyer..."></div>
+      <div class="form-group"><label class="form-label">Skills / Services to Showcase</label><textarea class="form-textarea" placeholder="List your key skills and services..."></textarea></div>
+      <div class="form-group"><label class="form-label">Do you need a Contact/Hire Me form?</label><select class="form-select"><option>Yes</option><option>No</option></select></div>`;
+  } else {
+    html = `
+      <div class="form-group"><label class="form-label">Describe Your Website Idea *</label><textarea class="form-textarea" placeholder="Apni website ke baare mein detail mein batayein — purpose, target audience, main features..."></textarea></div>
+      <div class="form-group"><label class="form-label">Who is your target audience?</label><input type="text" class="form-input" placeholder="e.g. Young adults, local businesses, parents..."></div>`;
+  }
+  container.innerHTML = html;
+}
+
+// ===========================
+// SUBMIT ORDER → WHATSAPP
+// ===========================
+function submitOrder() {
+  const pages = document.getElementById('s4Pages').value;
+  const budget = document.getElementById('s4Budget').value;
+  const notes = document.getElementById('s4Notes').value.trim();
+
+  const features = [];
+  for (let i = 1; i <= 12; i++) {
+    const cb = document.getElementById('f' + i);
+    if (cb && cb.checked) features.push(cb.value);
+  }
+
+  const msg = `
+🚀 *WEBSITE ORDER — GIRNEEL X*
+━━━━━━━━━━━━━━━━━━━
+👤 *Client Name:* ${orderData.name || 'N/A'}
+📱 *WhatsApp:* ${orderData.phone || 'N/A'}
+📧 *Email:* ${orderData.email || 'N/A'}
+🏢 *Business/Org:* ${orderData.business || 'N/A'}
+━━━━━━━━━━━━━━━━━━━
+🏷️ *Website Category:* ${orderData.category || 'N/A'}
+📋 *Project Details:* ${orderData.dynamicDetails || 'N/A'}
+⏰ *Timeline:* ${orderData.timeline || 'N/A'}
+🔗 *Reference Site:* ${orderData.reference || 'None'}
+━━━━━━━━━━━━━━━━━━━
+📄 *No. of Pages:* ${pages}
+⚙️ *Features Required:* ${features.length > 0 ? features.join(', ') : 'Basic only'}
+💰 *Budget:* ${budget || 'Not specified'}
+📝 *Special Notes:* ${notes || 'None'}
+━━━━━━━━━━━━━━━━━━━
+📅 Submitted: ${new Date().toLocaleString('en-IN')}
+  `.trim();
+
+  const encoded = encodeURIComponent(msg);
+  window.open(`https://wa.me/9129640708?text=${encoded}`, '_blank');
+}
+
+// ===========================
+// DOMAIN CHECK → WHATSAPP
+// ===========================
+function checkDomain() {
+  const name = document.getElementById('domainName').value.trim();
+  const ext = document.getElementById('domainExt').value;
+  if (!name) { alert('Please enter a domain name'); return; }
+  const full = name + ext;
+  const msg = `🌐 *DOMAIN ENQUIRY — GIRNEEL X*\n\nDomain Required: *${full}*\n\nPlease check availability and let me know the price.`;
+  window.open(`https://wa.me/9129640708?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// ===========================
+// CONTACT FORM → WHATSAPP
+// ===========================
+function sendContactWA() {
+  const name = document.getElementById('cName').value.trim();
+  const phone = document.getElementById('cPhone').value.trim();
+  const email = document.getElementById('cEmail').value.trim();
+  const subject = document.getElementById('cSubject').value.trim();
+  const message = document.getElementById('cMessage').value.trim();
+  if (!name || !phone) { alert('Please enter name and phone number'); return; }
+  const msg = `📩 *CONTACT FORM — GIRNEEL X*\n\n👤 Name: ${name}\n📱 Phone: ${phone}\n📧 Email: ${email}\n📌 Subject: ${subject}\n💬 Message: ${message}`;
+  window.open(`https://wa.me/9129640708?text=${encodeURIComponent(msg)}`, '_blank');
+  document.getElementById('contactSuccess').style.display = 'block';
+}
+
+// ===========================
+// NEWSLETTER → WHATSAPP
+// ===========================
+function subscribeNewsletter() {
+  const phone = document.getElementById('nlPhone').value.trim();
+  if (!phone) { alert('Please enter your WhatsApp number'); return; }
+  const msg = `📬 *BLOG SUBSCRIPTION — GIRNEEL X*\n\nPlease add me to your weekly digital tips list!\nMy WhatsApp: ${phone}`;
+  window.open(`https://wa.me/9129640708?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// ===========================
+// INIT
+// ===========================
+document.addEventListener('DOMContentLoaded', () => {
+  initReveal();
+  window.addEventListener('scroll', checkReveal);
+  // Add stickiness offset
+  document.querySelectorAll('section').forEach(s => {
+    s.style.paddingTop = s.style.paddingTop || '';
+  });
+});
+</script>
+</body>
+</html>
